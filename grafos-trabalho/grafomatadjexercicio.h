@@ -84,7 +84,6 @@ struct GrafoMatrizAdj* inicializar(int numVertices, bool ponderado) {
  * Portanto, usaremos busca linear
  **/
 int obterIndiceVertice(struct GrafoMatrizAdj* grafo, char* rotuloVertice) {
-    int obterIndiceVertice(struct GrafoMatrizAdj* grafo, char* rotuloVertice) {
     for(int i = 0; i < grafo->maxNumVertices; i++){
         if(strcmp(grafo->rotuloVertices[i],rotuloVertice)==0){
            return i;
@@ -108,9 +107,10 @@ void inserirAresta(struct GrafoMatrizAdj* grafo, char* rotuloVOrigem, char* rotu
  * Usamos a variavel grafo->verticesInseridos para controlar a quantidade de vertices que ja foi inserido no grafo.
  * Logo, ela pode/deve ser usada para especificar em qual posicao o vertice a ser inserido sera alocado.
  **/
+
 void inserirVertice(struct GrafoMatrizAdj* grafo, char* rotuloVertice) {
-  grafo->arestas[rotuloVertice+1][rotuloVertice+1] = 0;
-  grafo->v = v+1;
+    grafo->rotuloVertices[grafo->verticesInseridos] = rotuloVertice;
+    grafo->verticesInseridos = grafo->verticesInseridos+1;
 }
 
 /**
@@ -118,5 +118,12 @@ void inserirVertice(struct GrafoMatrizAdj* grafo, char* rotuloVertice) {
  * e haver conexão entre dois vertices em um grafo nao-ponderado.
  **/
 bool saoConectados(struct GrafoMatrizAdj* grafo, char* rotuloVOrigem, char* rotuloVDestino) {
-///klyfton você faz esse
+ int prim_ind = obterIndiceVertice(grafo,rotuloVOrigem);
+    int segun_ind = obterIndiceVertice(grafo,rotuloVDestino);
+
+    if(prim_ind!=-1 && segun_ind!=-1){
+        return true;
+    }else{
+        return false;
+    }
 }

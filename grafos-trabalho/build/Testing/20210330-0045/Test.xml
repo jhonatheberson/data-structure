@@ -24,25 +24,19 @@
 	ProcessorClockFrequency="2494.13"
 	>
 	<Testing>
-		<StartDateTime>Mar 29 21:52 -03</StartDateTime>
-		<StartTestTime>1617065536</StartTestTime>
+		<StartDateTime>Mar 29 23:17 -03</StartDateTime>
+		<StartTestTime>1617070639</StartTestTime>
 		<TestList>
 			<Test>./test/testGrafoMatrizAdj</Test>
 		</TestList>
-		<Test Status="failed">
+		<Test Status="passed">
 			<Name>testGrafoMatrizAdj</Name>
 			<Path>./test</Path>
 			<FullName>./test/testGrafoMatrizAdj</FullName>
 			<FullCommandLine>/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS\ E\ ESTRUTURAS\ DE\ DADOS\ II/2_unidade/data-structure/grafos-trabalho/build/test/testGrafoMatrizAdj</FullCommandLine>
 			<Results>
-				<NamedMeasurement type="text/string" name="Exit Code">
-					<Value>SEGFAULT</Value>
-				</NamedMeasurement>
-				<NamedMeasurement type="text/string" name="Exit Value">
-					<Value>0</Value>
-				</NamedMeasurement>
 				<NamedMeasurement type="numeric/double" name="Execution Time">
-					<Value>0.543943</Value>
+					<Value>0.0271944</Value>
 				</NamedMeasurement>
 				<NamedMeasurement type="numeric/double" name="Processors">
 					<Value>1</Value>
@@ -54,12 +48,12 @@
 					<Value>/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS\ E\ ESTRUTURAS\ DE\ DADOS\ II/2_unidade/data-structure/grafos-trabalho/build/test/testGrafoMatrizAdj</Value>
 				</NamedMeasurement>
 				<Measurement>
-					<Value encoding="base64" compression="gzip">eJxtT8tOwzAQvOcr9giHxAKJAwcOkRJCJNpKTsIliirjbFNXsbfygwNfj5OiChBz2t0ZzezwYIwyE2ihzM0tHCxpYBpHJdjpSEZ49kIa2UgyaDSeHOue+ZY9pg41Om/RpWgmSfrM8tdqx+t2s2ughLJpedd2PG+gKKHIi3ita3a/D0aNYoyOwos0GgTpg0U2WXEgl3or3sV8JDYRTTP6GPFzdFayaZn2y7+ZlEn/dMUA/LvMAywad2lzty7ggvKYJX16xQDVTDHtwqP5UJbMUhIc+jSc/4h/mVbLuxvhrfrMx1MbiaQH3m1hxfAPn9XGoZWC3tB6JXFVJF9XuYG6====</Value>
+					<Value encoding="base64" compression="gzip">eJydk8Fu2zAMhu9+Ch6bg6222A477GAsWWZsbQbH2SUICkVibBWWGEh02+3pJ9tBkBUFmoUnSuTHnxSosnPOuBqsNO5qAjtPFoRFbaR4bMhJFt/IotCkOouOKYjV1/JefEoDWgzsMaToakV2L/If80VZVHeLJcxgtqzKVbUq8yVMZzDNp/G2KMTtQ+eMljpWlCzTWKBT3HkUtZc7Cil7uZVtQ6ImqlvkKHHqBq9E3XsPfb+ZUsn689E2UB6G+Qh9ThinuRkOEDrDmCXr9GgbmLcU1cY4uifjyfVDQkBOu/2r5H+Kzvt27yR78yfXj1UMJGsoV/cw2OaNeFa4gF5J+oWejcIhI0KjLb6fD8HVNdgweVdwsWX0B3D2YgLH0fBdxTepSyQLhxeJnnDnyg6vZHwet5FlWKL9ieHMt31NXSb5hS6RPFBHyf/YtpEBJpbtJDlvqxmlTzU9u9NPk2VZUjUIfUdAO+DoDyR1vO8YnmWIMUtPqCEYpxBMrPqiEHUYk5uINtTqnr65vv0A29+xQJb8BZhFcxw=</Value>
 				</Measurement>
 			</Results>
 		</Test>
-		<EndDateTime>Mar 29 21:52 -03</EndDateTime>
-		<EndTestTime>1617065537</EndTestTime>
+		<EndDateTime>Mar 29 23:17 -03</EndDateTime>
+		<EndTestTime>1617070639</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

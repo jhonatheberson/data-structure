@@ -1,3 +1,2 @@
-testGrafoMatrizAdj 0 0
+testGrafoMatrizAdj 3 0.0179621
 ---
-testGrafoMatrizAdj

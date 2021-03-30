@@ -1,21 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_967a9/fast && /usr/bin/make -f CMakeFiles/cmTC_967a9.dir/build.make CMakeFiles/cmTC_967a9.dir/build
+Run Build Command(s):/usr/bin/make cmTC_a4a90/fast && /usr/bin/make -f CMakeFiles/cmTC_a4a90.dir/build.make CMakeFiles/cmTC_a4a90.dir/build
 make[1]: Entrando no diretório '/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_967a9.dir/src.c.o
-/bin/gcc-9   -DCMAKE_HAVE_LIBC_PTHREAD -fPIE   -o CMakeFiles/cmTC_967a9.dir/src.c.o   -c "/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/CMakeFiles/CMakeTmp/src.c"
-Linking C executable cmTC_967a9
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_967a9.dir/link.txt --verbose=1
-/bin/gcc-9  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_967a9.dir/src.c.o  -o cmTC_967a9 
-/usr/bin/ld: CMakeFiles/cmTC_967a9.dir/src.c.o: na função "main":
+Building C object CMakeFiles/cmTC_a4a90.dir/src.c.o
+/bin/gcc-9   -DCMAKE_HAVE_LIBC_PTHREAD -fPIE   -o CMakeFiles/cmTC_a4a90.dir/src.c.o   -c "/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/CMakeFiles/CMakeTmp/src.c"
+Linking C executable cmTC_a4a90
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a4a90.dir/link.txt --verbose=1
+/bin/gcc-9  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_a4a90.dir/src.c.o  -o cmTC_a4a90 
+/usr/bin/ld: CMakeFiles/cmTC_a4a90.dir/src.c.o: na função "main":
 src.c:(.text+0x46): referência não definida para "pthread_create"
 /usr/bin/ld: src.c:(.text+0x52): referência não definida para "pthread_detach"
 /usr/bin/ld: src.c:(.text+0x63): referência não definida para "pthread_join"
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_967a9.dir/build.make:87: cmTC_967a9] Erro 1
+make[1]: *** [CMakeFiles/cmTC_a4a90.dir/build.make:87: cmTC_a4a90] Erro 1
 make[1]: Saindo do diretório '/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_967a9/fast] Erro 2
+make: *** [Makefile:121: cmTC_a4a90/fast] Erro 2
 
 
 Source file was:
@@ -41,18 +41,18 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_720e1/fast && /usr/bin/make -f CMakeFiles/cmTC_720e1.dir/build.make CMakeFiles/cmTC_720e1.dir/build
+Run Build Command(s):/usr/bin/make cmTC_e2fcb/fast && /usr/bin/make -f CMakeFiles/cmTC_e2fcb.dir/build.make CMakeFiles/cmTC_e2fcb.dir/build
 make[1]: Entrando no diretório '/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_720e1.dir/CheckFunctionExists.c.o
-/bin/gcc-9   -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE   -o CMakeFiles/cmTC_720e1.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_720e1
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_720e1.dir/link.txt --verbose=1
-/bin/gcc-9  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_720e1.dir/CheckFunctionExists.c.o  -o cmTC_720e1  -lpthreads 
+Building C object CMakeFiles/cmTC_e2fcb.dir/CheckFunctionExists.c.o
+/bin/gcc-9   -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE   -o CMakeFiles/cmTC_e2fcb.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_e2fcb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e2fcb.dir/link.txt --verbose=1
+/bin/gcc-9  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_e2fcb.dir/CheckFunctionExists.c.o  -o cmTC_e2fcb  -lpthreads 
 /usr/bin/ld: não foi possível localizar -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_720e1.dir/build.make:87: cmTC_720e1] Erro 1
+make[1]: *** [CMakeFiles/cmTC_e2fcb.dir/build.make:87: cmTC_e2fcb] Erro 1
 make[1]: Saindo do diretório '/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_720e1/fast] Erro 2
+make: *** [Makefile:121: cmTC_e2fcb/fast] Erro 2
 
 
 

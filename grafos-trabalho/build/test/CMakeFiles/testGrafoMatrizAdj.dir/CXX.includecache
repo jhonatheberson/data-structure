@@ -334,7 +334,13 @@ cxxabi.h
 acxx_demangle.h
 -
 
+/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/grafomatadjexercicio.hpp
+stdbool.h
+-
+
 /media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/test/testGrafoMatrizAdj.cpp
+../grafomatadjexercicio.hpp
+/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/grafomatadjexercicio.hpp
 gtest/gtest.h
 /media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/test/gtest/gtest.h
 

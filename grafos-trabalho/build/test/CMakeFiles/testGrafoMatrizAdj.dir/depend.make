@@ -21,5 +21,6 @@ test/CMakeFiles/testGrafoMatrizAdj.dir/testGrafoMatrizAdj.cpp.o: ../googletest/g
 test/CMakeFiles/testGrafoMatrizAdj.dir/testGrafoMatrizAdj.cpp.o: ../googletest/googletest/include/gtest/internal/gtest-port.h
 test/CMakeFiles/testGrafoMatrizAdj.dir/testGrafoMatrizAdj.cpp.o: ../googletest/googletest/include/gtest/internal/gtest-string.h
 test/CMakeFiles/testGrafoMatrizAdj.dir/testGrafoMatrizAdj.cpp.o: ../googletest/googletest/include/gtest/internal/gtest-type-util.h
+test/CMakeFiles/testGrafoMatrizAdj.dir/testGrafoMatrizAdj.cpp.o: ../grafomatadjexercicio.hpp
 test/CMakeFiles/testGrafoMatrizAdj.dir/testGrafoMatrizAdj.cpp.o: ../test/testGrafoMatrizAdj.cpp
 

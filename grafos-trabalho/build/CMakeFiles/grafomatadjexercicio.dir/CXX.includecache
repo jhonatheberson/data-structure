@@ -7,18 +7,20 @@
 #IncludeRegexTransform: 
 
 /media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/grafomatadjexercicio.cpp
+grafomatadjexercicio.hpp
+/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/grafomatadjexercicio.hpp
 stdlib.h
 -
 limits.h
 -
-stdbool.h
--
-iostream
+stdio.h
 -
 string.h
 -
-grafomatadjexercicio.hpp
-/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/grafomatadjexercicio.hpp
+signal.h
+-
 
 /media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/grafomatadjexercicio.hpp
+stdbool.h
+-
 

@@ -1,0 +1,1 @@
+/bin/g++-9  -g   CMakeFiles/testGrafoMatrizAdj.dir/testGrafoMatrizAdj.cpp.o  -o testGrafoMatrizAdj  ../lib/libgtest_maind.a ../libgrafomatadjexercicio.a ../lib/libgtestd.a -lpthread 

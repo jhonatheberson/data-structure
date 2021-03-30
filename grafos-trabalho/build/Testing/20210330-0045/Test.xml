@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20210330-0045-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.16.3"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="itrack"
+	OSRelease="5.8.0-48-generic"
+	OSVersion="#54~20.04.1-Ubuntu SMP Sat Mar 20 13:40:25 UTC 2021"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="58"
+	ProcessorCacheSize="3072"
+	NumberOfLogicalCPU="4"
+	NumberOfPhysicalCPU="2"
+	TotalVirtualMemory="9268"
+	TotalPhysicalMemory="5842"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="2494.13"
+	>
+	<Testing>
+		<StartDateTime>Mar 29 21:52 -03</StartDateTime>
+		<StartTestTime>1617065536</StartTestTime>
+		<TestList>
+			<Test>./test/testGrafoMatrizAdj</Test>
+		</TestList>
+		<Test Status="failed">
+			<Name>testGrafoMatrizAdj</Name>
+			<Path>./test</Path>
+			<FullName>./test/testGrafoMatrizAdj</FullName>
+			<FullCommandLine>/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS\ E\ ESTRUTURAS\ DE\ DADOS\ II/2_unidade/data-structure/grafos-trabalho/build/test/testGrafoMatrizAdj</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="text/string" name="Exit Code">
+					<Value>SEGFAULT</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Exit Value">
+					<Value>0</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.543943</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS\ E\ ESTRUTURAS\ DE\ DADOS\ II/2_unidade/data-structure/grafos-trabalho/build/test/testGrafoMatrizAdj</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJxtT8tOwzAQvOcr9giHxAKJAwcOkRJCJNpKTsIliirjbFNXsbfygwNfj5OiChBz2t0ZzezwYIwyE2ihzM0tHCxpYBpHJdjpSEZ49kIa2UgyaDSeHOue+ZY9pg41Om/RpWgmSfrM8tdqx+t2s2ughLJpedd2PG+gKKHIi3ita3a/D0aNYoyOwos0GgTpg0U2WXEgl3or3sV8JDYRTTP6GPFzdFayaZn2y7+ZlEn/dMUA/LvMAywad2lzty7ggvKYJX16xQDVTDHtwqP5UJbMUhIc+jSc/4h/mVbLuxvhrfrMx1MbiaQH3m1hxfAPn9XGoZWC3tB6JXFVJF9XuYG6====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Mar 29 21:52 -03</EndDateTime>
+		<EndTestTime>1617065537</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

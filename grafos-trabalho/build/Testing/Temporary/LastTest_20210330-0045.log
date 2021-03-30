@@ -1,0 +1,23 @@
+Start testing: Mar 29 21:52 -03
+----------------------------------------------------------
+1/1 Testing: testGrafoMatrizAdj
+1/1 Test: testGrafoMatrizAdj
+Command: "/media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/test/testGrafoMatrizAdj"
+Directory: /media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/build/test
+"testGrafoMatrizAdj" start time: Mar 29 21:52 -03
+Output:
+----------------------------------------------------------
+Running main() from /media/jhonat/Home/documentos/UFRN/9-semestres-engcomp/ALGORITMOS E ESTRUTURAS DE DADOS II/2_unidade/data-structure/grafos-trabalho/googletest/googletest/src/gtest_main.cc
+[==========] Running 5 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 5 tests from GrafoMatrizAdjTest
+[ RUN      ] GrafoMatrizAdjTest.InsercaoVerticeGrafo
+<end of output>
+Test time =   0.54 sec
+----------------------------------------------------------
+Test Failed.
+"testGrafoMatrizAdj" end time: Mar 29 21:52 -03
+"testGrafoMatrizAdj" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 29 21:52 -03

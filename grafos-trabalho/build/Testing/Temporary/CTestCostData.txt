@@ -1,0 +1,3 @@
+testGrafoMatrizAdj 0 0
+---
+testGrafoMatrizAdj

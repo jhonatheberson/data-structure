@@ -1,0 +1,2 @@
+/bin/ar qc libgrafomatadjexercicio.a  CMakeFiles/grafomatadjexercicio.dir/grafomatadjexercicio.cpp.o
+/bin/ranlib libgrafomatadjexercicio.a

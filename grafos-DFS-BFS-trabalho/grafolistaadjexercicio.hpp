@@ -1,7 +1,27 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <limits.h>
 using namespace std;
+
+
+typedef struct s{
+    int chave;
+	string rotuloVOrigem;
+	struct s *prox;
+} No;
+
+typedef struct Fila {
+
+	int capacidade;
+	float *dados;
+	int primeiro;
+	int ultimo;
+	int nItens;
+
+}Nof;
+
+bool marca[6];
 
 class GrafoListaAdj {
 private:
@@ -16,6 +36,14 @@ private:
     **/
     int obterIndiceVertice(string rotuloVertice) {
         //IMPLEMENTAR
+        for (int i = 0; i < vector->maxNumVertices; i++) {
+        if (vector->rotuloVertices[i] == NULL)
+            continue;
+        if (strcmp(vector->rotuloVertices[i], rotuloVertice) == 0)
+            return i;
+    }
+
+    return -1;
     }
 
     /**
@@ -23,10 +51,19 @@ private:
     * vertices j� foram visitados.
     * Lembrando que DFS � uma fun��o recursiva.
     **/
-    void dfs(string rotuloVOrigem, bool* indicesVerticesVisitados) {
-        //IMPLEMENTAR
+    void dfs(string rotuloVOrigem, bool* indicesVerticesVisitados, No *lista[6]) {
+        marca[rotuloVOrigem] = 1;
+        No *pt = lista[rotuloVOrigem]->prox;
+        while(pt != NULL){
+            if(marca[pt->rotuloVOrigem] != 1){
+                marca[pt->rotuloVOrigem] = 1;
+                cout<<"Marcou aresta: "<<pt->rotuloVOrigem<<endl;
+                printMarca();
+                dfs(pt->rotuloVOrigem, pt->indicesVerticesVisitados, lista);
+            }
+        pt = pt->prox;
+        }
     }
-
 public:
     /**
     * Lembrem-se:
@@ -36,7 +73,13 @@ public:
     *          v�rtice na lista de adjac�ncias
     **/
     void inserirVertice(string rotuloVertice) {
-        //IMPLEMENTAR
+        while(pt->prox != NULL){
+            pt = pt->prox;
+        }
+        No *prox = new No();
+        prox->chave = chave;
+        prox->rotuloVertice = rotuloVertice;
+        pt->prox = prox;
     }
 
     /**
@@ -71,6 +114,14 @@ public:
     **/
     bool saoConectados(string rotuloVOrigem, string rotuloVDestino) {
         //IMPLEMENTAR
+        int prim_ind = obterIndiceVertice(vector,rotuloVOrigem);
+        int segun_ind = obterIndiceVertice(vector,rotuloVDestino);
+
+        if(prim_ind!=-1 && segun_ind!=-1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -91,7 +142,46 @@ public:
     * A melhor forma de fazer isto � reusando a fun��o dfs.
     **/
     int colorir() {
-        //IMPLEMENTAR
+        int cor = 1;
+        for(int i = 0; i < vertices.size(); i++){
+            if(!visitado[i]){
+                dfs(i); //dfs irá alterar a variável global visitado
+                //neste ponto podemos descobrir quais vértices
+                //foram visitados e mudar o valor de seus rótulos
+                cor++;
+            }
+        }
+        return cor;
+    }
+
+    void inserir(struct Fila *f, int v) {
+
+        if(f->ultimo == f->capacidade-1)
+            f->ultimo = -1;
+
+        f->ultimo++;
+        f->dados[f->ultimo] = v;
+        f->nItens++;
+
+    }
+
+    int remover(struct Fila *f ) {
+        int temp = f->dados[f->primeiro++];
+        if(f->primeiro == f->capacidade)
+            f->primeiro = 0;
+        f->nItens--;
+        return temp;
+    }
+
+    int estaVazia( struct Fila *f ) {
+        return (f->nItens==0);
+    }
+
+    void printMarca(){
+        for(int i = 0; i<6; i++){
+            cout<<marca[i]<<" ";
+        }
+        cout<<endl;
     }
 
     /**
@@ -104,8 +194,24 @@ public:
     * N�o � uma fun��o recursiva. 
     * � necess�rio utilizar a ED fila.
     **/
-    int* bfs(string rotuloVOrigem) {
-        //IMPLEMENTAR
+    int* bfs(string rotuloVOrigem, No *lista[6], Nof *fila) {
+        printMarca();
+        cout<<"MARCOU "<<rotuloVOrigem<<endl;
+        marca[rotuloVOrigem] = 1;
+        inserir(fila, rotuloVOrigem);
+        while(!estaVazia(fila)){
+            int rotuloVOrigem_fila = remover(fila);
+            No *pt = lista[rotuloVOrigem_fila];
+            while(pt!= NULL){
+                if(marca[pt->rotuloVOrigem] != 1){
+                    marca[pt->rotuloVOrigem] = 1;
+                    inserir(fila, pt->rotuloVOrigem);
+                    printMarca();
+                    cout<<"MARCOU "<<pt->rotuloVOrigem<<endl;
+                }
+                pt = pt->prox;
+            }
+        }
     }
 
     vector<string> getVertices() {

@@ -4,31 +4,12 @@
 #include <limits.h>
 using namespace std;
 
-
-typedef struct s{
-    int chave;
-	string rotuloVOrigem;
-	struct s *prox;
-} No;
-
-typedef struct Fila {
-
-	int capacidade;
-	float *dados;
-	int primeiro;
-	int ultimo;
-	int nItens;
-
-}Nof;
-
-bool marca[6];
-
 class GrafoListaAdj {
 private:
-    vector<string> vertices;
+    vector<string> vertices; //lista de vertices
 
     //first � o indice do vertice, second � o peso (caso o grafo seja ponderado)
-    vector<vector<pair<int, int>>> arestas;
+    vector<vector<pair<int, int>>> arestas; //arestas
 
     /**
     * A principio nao temos nenhuma ordenacao usando os rotulos.
@@ -36,14 +17,16 @@ private:
     **/
     int obterIndiceVertice(string rotuloVertice) {
         //IMPLEMENTAR
-        for (int i = 0; i < vector->maxNumVertices; i++) {
-        if (vector->rotuloVertices[i] == NULL)
-            continue;
-        if (strcmp(vector->rotuloVertices[i], rotuloVertice) == 0)
-            return i;
-    }
-
-    return -1;
+        int tam = vertices.size();
+        for (int i = 0; i < tam; i++) {
+            if (strcmp(vertices[i], "") == 0){
+                continue;
+            }
+            if (strcmp(vertices[i], rotuloVertice) == 0){
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -51,18 +34,17 @@ private:
     * vertices j� foram visitados.
     * Lembrando que DFS � uma fun��o recursiva.
     **/
-    void dfs(string rotuloVOrigem, bool* indicesVerticesVisitados, No *lista[6]) {
-        marca[rotuloVOrigem] = 1;
-        No *pt = lista[rotuloVOrigem]->prox;
-        while(pt != NULL){
-            if(marca[pt->rotuloVOrigem] != 1){
-                marca[pt->rotuloVOrigem] = 1;
-                cout<<"Marcou aresta: "<<pt->rotuloVOrigem<<endl;
-                printMarca();
-                dfs(pt->rotuloVOrigem, pt->indicesVerticesVisitados, lista);
-            }
-        pt = pt->prox;
-        }
+    void dfs(string rotuloVOrigem, bool* indicesVerticesVisitados) {
+        int indexOrigem = obterIndiceVertice(rotuloVOrigem);
+        if (indicesVerticesVisitados[indeOrigem])
+            return;
+        indicesVerticesVisitados[indexOrigem] = true;
+
+        vector<pair<int,int>> vizinhos = arestas[indexOrigem];
+        
+        for (int i=0; i<vizinhos.size(); i++){
+            string rotulo = "v" + to_string(vizinhos[i].first + shift_value);
+            dfs(rotulo, indicesVerticesVisitados);
     }
 public:
     /**
@@ -73,13 +55,7 @@ public:
     *          v�rtice na lista de adjac�ncias
     **/
     void inserirVertice(string rotuloVertice) {
-        while(pt->prox != NULL){
-            pt = pt->prox;
-        }
-        No *prox = new No();
-        prox->chave = chave;
-        prox->rotuloVertice = rotuloVertice;
-        pt->prox = prox;
+        vertices.push_back(rotuloVertice);
     }
 
     /**
@@ -105,7 +81,9 @@ public:
     * especificado.
     **/
     void inserirArestaDirecionada(string rotuloVOrigem, string rotuloVDestino, int peso) {
-        //IMPLEMENTAR
+        if (rotuloVOrigem == NULL)
+            return;
+        arestas[vertices[rotuloVOrigem],vertices[rotuloVDestino]] = peso
     }
 
     /**
@@ -114,9 +92,8 @@ public:
     **/
     bool saoConectados(string rotuloVOrigem, string rotuloVDestino) {
         //IMPLEMENTAR
-        int prim_ind = obterIndiceVertice(vector,rotuloVOrigem);
-        int segun_ind = obterIndiceVertice(vector,rotuloVDestino);
-
+        int prim_ind = obterIndiceVertice(rotuloVOrigem);
+        int segun_ind = obterIndiceVertice(rotuloVDestino);
         if(prim_ind!=-1 && segun_ind!=-1){
             return true;
         }else{
@@ -144,44 +121,15 @@ public:
     int colorir() {
         int cor = 1;
         for(int i = 0; i < vertices.size(); i++){
-            if(!visitado[i]){
-                dfs(i); //dfs irá alterar a variável global visitado
+
+            if(!indicesVerticesVisitados[i]){
+                dfs(i, indicesVerticesVisitados); //dfs irá alterar a variável global visitado
                 //neste ponto podemos descobrir quais vértices
                 //foram visitados e mudar o valor de seus rótulos
                 cor++;
             }
         }
         return cor;
-    }
-
-    void inserir(struct Fila *f, int v) {
-
-        if(f->ultimo == f->capacidade-1)
-            f->ultimo = -1;
-
-        f->ultimo++;
-        f->dados[f->ultimo] = v;
-        f->nItens++;
-
-    }
-
-    int remover(struct Fila *f ) {
-        int temp = f->dados[f->primeiro++];
-        if(f->primeiro == f->capacidade)
-            f->primeiro = 0;
-        f->nItens--;
-        return temp;
-    }
-
-    int estaVazia( struct Fila *f ) {
-        return (f->nItens==0);
-    }
-
-    void printMarca(){
-        for(int i = 0; i<6; i++){
-            cout<<marca[i]<<" ";
-        }
-        cout<<endl;
     }
 
     /**
@@ -194,24 +142,26 @@ public:
     * N�o � uma fun��o recursiva. 
     * � necess�rio utilizar a ED fila.
     **/
-    int* bfs(string rotuloVOrigem, No *lista[6], Nof *fila) {
-        printMarca();
-        cout<<"MARCOU "<<rotuloVOrigem<<endl;
-        marca[rotuloVOrigem] = 1;
-        inserir(fila, rotuloVOrigem);
-        while(!estaVazia(fila)){
-            int rotuloVOrigem_fila = remover(fila);
-            No *pt = lista[rotuloVOrigem_fila];
-            while(pt!= NULL){
-                if(marca[pt->rotuloVOrigem] != 1){
-                    marca[pt->rotuloVOrigem] = 1;
-                    inserir(fila, pt->rotuloVOrigem);
-                    printMarca();
-                    cout<<"MARCOU "<<pt->rotuloVOrigem<<endl;
+    int* bfs(string rotuloVOrigem) {
+        int indexVOrigem = obterIndiceVertice(rotuloVOrigem);
+        bool* visited;
+        int* distance;
+        visited[indexVOrigem] = true;
+        distance[indexVOrigem] = 0;
+        queue<int> Fila;
+        Fila.push(indexVOrigem);
+        while (!Fila.empty()) {
+            int s = Fila.front(); Fila.pop();
+            // process node s
+            for (auto u : vertices[s]) {
+                if (!visited[u]){
+                    visited[u] = true;
+                    distance[u] = distance[s]+1;
+                    Fila.push(u);
                 }
-                pt = pt->prox;
             }
         }
+        return distance;
     }
 
     vector<string> getVertices() {

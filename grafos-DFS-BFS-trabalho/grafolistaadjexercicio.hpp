@@ -86,7 +86,11 @@ public:
     void inserirArestaDirecionada(string rotuloVOrigem, string rotuloVDestino, int peso) {
         if (rotuloVOrigem == NULL)
             return;
-        arestas[vertices[rotuloVOrigem],vertices[rotuloVDestino]] = peso
+        // arestas[vertices[rotuloVOrigem],vertices[rotuloVDestino]] = peso
+        arestas.push().fist = rotuloVOrigem;
+        arestas.push().second = peso;
+        arestas.push().fist = rotuloVOrigem;
+        arestas.push().second = peso;
     }
 
     /**

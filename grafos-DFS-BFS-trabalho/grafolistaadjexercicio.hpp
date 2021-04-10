@@ -4,8 +4,13 @@
 #include <limits.h>
 using namespace std;
 
+
+#define POS_INF 1000000000
+#define NEG_INF -1000000000
+
 class GrafoListaAdj {
 private:
+    int value;
     vector<string> vertices; //lista de vertices
 
     //first � o indice do vertice, second � o peso (caso o grafo seja ponderado)
@@ -19,10 +24,7 @@ private:
         //IMPLEMENTAR
         int tam = vertices.size();
         for (int i = 0; i < tam; i++) {
-            if (strcmp(vertices[i], "") == 0){
-                continue;
-            }
-            if (strcmp(vertices[i], rotuloVertice) == 0){
+            if (vertices[i] == rotuloVertice){
                 return i;
             }
         }
@@ -36,14 +38,14 @@ private:
     **/
     void dfs(string rotuloVOrigem, bool* indicesVerticesVisitados) {
         int indexOrigem = obterIndiceVertice(rotuloVOrigem);
-        if (indicesVerticesVisitados[indeOrigem])
+        if (indicesVerticesVisitados[indexOrigem])
             return;
         indicesVerticesVisitados[indexOrigem] = true;
 
         vector<pair<int,int>> vizinhos = arestas[indexOrigem];
         
         for (int i=0; i<vizinhos.size(); i++){
-            string rotulo = "v" + to_string(vizinhos[i].first + shift_value);
+            string rotulo = "v" + to_string(vizinhos[i].first + value);
             dfs(rotulo, indicesVerticesVisitados);
     }
 public:
@@ -55,7 +57,9 @@ public:
     *          v�rtice na lista de adjac�ncias
     **/
     void inserirVertice(string rotuloVertice) {
+        value = 0;
         vertices.push_back(rotuloVertice);
+        arestas.push_back(rotuloVertice);
     }
 
     /**

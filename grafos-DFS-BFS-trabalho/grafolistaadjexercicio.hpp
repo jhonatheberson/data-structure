@@ -59,7 +59,6 @@ public:
     void inserirVertice(string rotuloVertice) {
         value = 0;
         vertices.push_back(rotuloVertice);
-        arestas.push_back(rotuloVertice);
     }
 
     /**

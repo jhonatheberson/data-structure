@@ -1,5 +1,5 @@
-#include "testGrafoMatrizAdj.h"
-#include "grafomatadjexercicio.h"
+#include "Grafolistaadjexercicio.h"
+#include "Grafolistaadjexercicio.h"
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {

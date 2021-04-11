@@ -1,5 +1,5 @@
 extern "C++" {
-#include "../grafolistaadjexercicio.hpp"
+#include "../Grafolistaadjexercicio.hpp"
 }
 
 #include "gtest/gtest.h"
@@ -46,13 +46,13 @@ TEST_F(GrafoListaAdjTest, InsercaoVerticeRepetido) {
 	EXPECT_EQ(grafo->getArestas().size(), 1);
 }
 
-void inserirVertices(GrafoListaAdj* grafoNaoPonderado, int ini, int fim) {
+void inserirVertices(GrafoListaAdj* grafo, int ini, int fim) {
 	for (int i = ini; i <= fim; i++) {
 		string rotulo;
 		std::stringstream sstm;
 		sstm << "v" << i;
 		rotulo = sstm.str();
-		grafoNaoPonderado->inserirVertice(rotulo);
+		grafo->inserirVertice(rotulo);
 	}
 }
 
@@ -185,33 +185,9 @@ TEST_F(GrafoListaAdjTest, SaoConectadosGrafoDirecionado) {
 	EXPECT_FALSE(grafo->saoConectados("v4", "v3"));
 }
 
-TEST_F(GrafoListaAdjTest, haCaminho) {
-	inserirVertices(grafo,1,9);
-
-	//grafo usado: https://github.com/eduardolfalcao/edii/blob/master/conteudos/imgs/grafo-tad-rotulado.png
-	
-	grafo->inserirArestaNaoDirecionada("v1", "v2");
-	grafo->inserirArestaNaoDirecionada("v1", "v3");
-	grafo->inserirArestaNaoDirecionada("v2", "v4");
-	grafo->inserirArestaNaoDirecionada("v3", "v4");
-	grafo->inserirArestaNaoDirecionada("v3", "v5");
-	grafo->inserirArestaNaoDirecionada("v4", "v6");
-	grafo->inserirArestaNaoDirecionada("v5", "v9");
-	grafo->inserirArestaNaoDirecionada("v6", "v8");
-	grafo->inserirArestaNaoDirecionada("v8", "v9");
-
-	EXPECT_TRUE(grafo->haCaminho("v1","v1"));
-	EXPECT_TRUE(grafo->haCaminho("v1","v2"));
-	EXPECT_TRUE(grafo->haCaminho("v1","v9"));
-
-	EXPECT_FALSE(grafo->haCaminho("v1","v7"));
-	EXPECT_FALSE(grafo->haCaminho("v7","v5"));
-}
-
-TEST_F(GrafoListaAdjTest, colorirGrafo1Comp) {
-	inserirVertices(grafo,1,9);
-	
-	//grafo usado: https://github.com/eduardolfalcao/edii/blob/master/conteudos/imgs/grafo-tad-rotulado.png
+void construirGrafoNaoPonderado(GrafoListaAdj* grafo) {
+	//este � o grafo n�o ponderado usado
+	//https://github.com/eduardolfalcao/edii/blob/master/conteudos/imgs/grafo-tad-rotulado.png
 
 	grafo->inserirArestaNaoDirecionada("v1", "v2");
 	grafo->inserirArestaNaoDirecionada("v1", "v3");
@@ -223,17 +199,36 @@ TEST_F(GrafoListaAdjTest, colorirGrafo1Comp) {
 	grafo->inserirArestaNaoDirecionada("v5", "v9");
 	grafo->inserirArestaNaoDirecionada("v6", "v8");
 	grafo->inserirArestaNaoDirecionada("v8", "v9");
-
-	EXPECT_EQ(grafo->colorir(), 1);
-	for(int i = 0; i <= 8; i++){
-		EXPECT_EQ(grafo->getVertices().at(i), "cor1");
-	}
-	
+	grafo->inserirArestaNaoDirecionada("v9", "v9");
 }
 
-TEST_F(GrafoListaAdjTest, colorirGrafo5Comp) {
-	inserirVertices(grafo, 0, 17);
+TEST_F(GrafoListaAdjTest, haCaminho) {
+	//1 a 10, pra v10 ficar desconectado do componente
+	inserirVertices(grafo,1,10);	
+	construirGrafoNaoPonderado(grafo);	
 
+	EXPECT_FALSE(grafo->haCaminho("v1","v1"));
+	EXPECT_TRUE(grafo->haCaminho("v9", "v9"));
+	EXPECT_TRUE(grafo->haCaminho("v1","v2"));
+	EXPECT_TRUE(grafo->haCaminho("v1","v9"));
+
+	//note que v10 n�o est� conectado
+	//inclusive, n�o h� v10 no grafo da url descrita
+	//logo, n�o existe caminhos chegando ou partindo de v10
+	EXPECT_FALSE(grafo->haCaminho("v1","v10"));
+	EXPECT_FALSE(grafo->haCaminho("v10","v5"));
+}
+
+TEST_F(GrafoListaAdjTest, colorirGrafo1Comp) {
+	inserirVertices(grafo,1,9);
+	construirGrafoNaoPonderado(grafo);
+	
+	EXPECT_EQ(grafo->colorir(), 1);
+	for(int i = 1; i <= 8; i++)
+		EXPECT_EQ(grafo->getVertices().at(i-1), grafo->getVertices().at(i));
+}
+
+void construirGrafoCom5Componentes(GrafoListaAdj* grafo) {
 	//grafo colorido com 5 componentes exibido aqui
 	//https://github.com/eduardolfalcao/edii/blob/master/conteudos/imgs/grafo-nao-conectado-dfs.png
 	//https://github.com/eduardolfalcao/edii/blob/master/conteudos/imgs/grafo-nao-conectado-dfs-colorido.png
@@ -261,49 +256,45 @@ TEST_F(GrafoListaAdjTest, colorirGrafo5Comp) {
 	grafo->inserirArestaNaoDirecionada("v6", "v11");
 	grafo->inserirArestaNaoDirecionada("v7", "v11");
 
-	//comp5: v�rtice "v12"
+	//comp5: v�rtice "v12" (sem arestas)
+}
+
+TEST_F(GrafoListaAdjTest, colorirGrafo5Comp) {
+	inserirVertices(grafo, 0, 17);
+	construirGrafoCom5Componentes(grafo);	
 
 	EXPECT_EQ(grafo->colorir(), 5);
 
-	EXPECT_EQ(grafo->getVertices().at(0), "cor1");
-	EXPECT_EQ(grafo->getVertices().at(4), "cor1");
-	EXPECT_EQ(grafo->getVertices().at(8), "cor1");
-	EXPECT_EQ(grafo->getVertices().at(13), "cor1");
-	EXPECT_EQ(grafo->getVertices().at(14), "cor1");
+	string corComp1 = grafo->getVertices().at(0);
+	EXPECT_EQ(grafo->getVertices().at(4), corComp1);
+	EXPECT_EQ(grafo->getVertices().at(8), corComp1);
+	EXPECT_EQ(grafo->getVertices().at(13), corComp1);
+	EXPECT_EQ(grafo->getVertices().at(14), corComp1);
 
-	EXPECT_EQ(grafo->getVertices().at(1), "cor2");
-	EXPECT_EQ(grafo->getVertices().at(5), "cor2");
-	EXPECT_EQ(grafo->getVertices().at(16), "cor2");
-	EXPECT_EQ(grafo->getVertices().at(17), "cor2");
+	string corComp2 = grafo->getVertices().at(1);
+	EXPECT_EQ(grafo->getVertices().at(5), corComp2);
+	EXPECT_EQ(grafo->getVertices().at(16), corComp2);
+	EXPECT_EQ(grafo->getVertices().at(17), corComp2);
 
-	EXPECT_EQ(grafo->getVertices().at(3), "cor3");
-	EXPECT_EQ(grafo->getVertices().at(9), "cor3");
-	EXPECT_EQ(grafo->getVertices().at(15), "cor3");
-	EXPECT_EQ(grafo->getVertices().at(2), "cor3");
-	EXPECT_EQ(grafo->getVertices().at(10), "cor3");
+	string corComp3 = grafo->getVertices().at(3);
+	EXPECT_EQ(grafo->getVertices().at(9), corComp3);
+	EXPECT_EQ(grafo->getVertices().at(15), corComp3);
+	EXPECT_EQ(grafo->getVertices().at(2), corComp3);
+	EXPECT_EQ(grafo->getVertices().at(10), corComp3);
 
-	EXPECT_EQ(grafo->getVertices().at(6), "cor4");
-	EXPECT_EQ(grafo->getVertices().at(7), "cor4");
-	EXPECT_EQ(grafo->getVertices().at(11), "cor4");
+	string corComp4 = grafo->getVertices().at(6);
+	EXPECT_EQ(grafo->getVertices().at(7), corComp4);
+	EXPECT_EQ(grafo->getVertices().at(11), corComp4);
 
-	EXPECT_EQ(grafo->getVertices().at(12), "cor5");
+	EXPECT_NE(grafo->getVertices().at(12), corComp1);
+	EXPECT_NE(grafo->getVertices().at(12), corComp2);
+	EXPECT_NE(grafo->getVertices().at(12), corComp3);
+	EXPECT_NE(grafo->getVertices().at(12), corComp4);
 }
 
 TEST_F(GrafoListaAdjTest, bfsGrafo1CompNaoPonderado) {
 	inserirVertices(grafo, 1, 9);
-
-	//grafo usado: https://github.com/eduardolfalcao/edii/blob/master/conteudos/imgs/grafo-tad-rotulado.png
-
-	grafo->inserirArestaNaoDirecionada("v1", "v2");
-	grafo->inserirArestaNaoDirecionada("v1", "v3");
-	grafo->inserirArestaNaoDirecionada("v2", "v4");
-	grafo->inserirArestaNaoDirecionada("v3", "v4");
-	grafo->inserirArestaNaoDirecionada("v3", "v5");
-	grafo->inserirArestaNaoDirecionada("v4", "v6");
-	grafo->inserirArestaNaoDirecionada("v4", "v7");
-	grafo->inserirArestaNaoDirecionada("v5", "v9");
-	grafo->inserirArestaNaoDirecionada("v6", "v8");
-	grafo->inserirArestaNaoDirecionada("v8", "v9");
+	construirGrafoNaoPonderado(grafo);
 
 	int* distancias = grafo->bfs("v1");
 	EXPECT_EQ(distancias[0], 0);
@@ -315,6 +306,7 @@ TEST_F(GrafoListaAdjTest, bfsGrafo1CompNaoPonderado) {
 	EXPECT_EQ(distancias[6], 3);
 	EXPECT_EQ(distancias[7], 4);
 	EXPECT_EQ(distancias[8], 3);
+	free(distancias);
 
 	distancias = grafo->bfs("v2");
 	EXPECT_EQ(distancias[0], 1);
@@ -326,39 +318,12 @@ TEST_F(GrafoListaAdjTest, bfsGrafo1CompNaoPonderado) {
 	EXPECT_EQ(distancias[6], 2);
 	EXPECT_EQ(distancias[7], 3);
 	EXPECT_EQ(distancias[8], 4);
+	free(distancias);
 }
 
 TEST_F(GrafoListaAdjTest, bfsGrafo5CompNaoPonderado) {
 	inserirVertices(grafo, 0, 17);
-
-	//grafo colorido com 5 componentes exibido aqui
-	//https://github.com/eduardolfalcao/edii/blob/master/conteudos/imgs/grafo-nao-conectado-dfs.png
-	//https://github.com/eduardolfalcao/edii/blob/master/conteudos/imgs/grafo-nao-conectado-dfs-colorido.png
-
-	//comp1
-	grafo->inserirArestaNaoDirecionada("v0", "v4");
-	grafo->inserirArestaNaoDirecionada("v0", "v8");
-	grafo->inserirArestaNaoDirecionada("v0", "v13");
-	grafo->inserirArestaNaoDirecionada("v0", "v14");
-
-	//comp2
-	grafo->inserirArestaNaoDirecionada("v1", "v5");
-	grafo->inserirArestaNaoDirecionada("v5", "v16");
-	grafo->inserirArestaNaoDirecionada("v5", "v17");
-
-	//comp3
-	grafo->inserirArestaNaoDirecionada("v3", "v9");
-	grafo->inserirArestaNaoDirecionada("v9", "v2");
-	grafo->inserirArestaNaoDirecionada("v15", "v9");
-	grafo->inserirArestaNaoDirecionada("v15", "v2");
-	grafo->inserirArestaNaoDirecionada("v15", "v10");
-
-	//comp4
-	grafo->inserirArestaNaoDirecionada("v6", "v7");
-	grafo->inserirArestaNaoDirecionada("v6", "v11");
-	grafo->inserirArestaNaoDirecionada("v7", "v11");
-
-	//comp5: v�rtice "v12"
+	construirGrafoCom5Componentes(grafo);
 
 	int* distancias = grafo->bfs("v0");
 	EXPECT_EQ(distancias[0], 0);
@@ -379,6 +344,7 @@ TEST_F(GrafoListaAdjTest, bfsGrafo5CompNaoPonderado) {
 	EXPECT_EQ(distancias[15], 0);
 	EXPECT_EQ(distancias[16], 0);
 	EXPECT_EQ(distancias[17], 0);
+	free(distancias);
 
 	distancias = grafo->bfs("v1");
 	EXPECT_EQ(distancias[0], 0);
@@ -399,6 +365,7 @@ TEST_F(GrafoListaAdjTest, bfsGrafo5CompNaoPonderado) {
 	EXPECT_EQ(distancias[15], 0);
 	EXPECT_EQ(distancias[16], 2);
 	EXPECT_EQ(distancias[17], 2);
+	free(distancias);
 
 	distancias = grafo->bfs("v11");
 	EXPECT_EQ(distancias[0], 0);
@@ -419,6 +386,7 @@ TEST_F(GrafoListaAdjTest, bfsGrafo5CompNaoPonderado) {
 	EXPECT_EQ(distancias[15], 0);
 	EXPECT_EQ(distancias[16], 0);
 	EXPECT_EQ(distancias[17], 0);
+	free(distancias);
 
 	distancias = grafo->bfs("v3");
 	EXPECT_EQ(distancias[0], 0);
@@ -439,5 +407,6 @@ TEST_F(GrafoListaAdjTest, bfsGrafo5CompNaoPonderado) {
 	EXPECT_EQ(distancias[15], 2);
 	EXPECT_EQ(distancias[16], 0);
 	EXPECT_EQ(distancias[17], 0);
+	free(distancias);
 }
 #endif //GRAFO_LISTA_ADJ_TEST_H

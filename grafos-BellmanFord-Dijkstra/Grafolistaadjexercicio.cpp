@@ -216,6 +216,104 @@ int* GrafoListaAdj::bfs(string rotuloVOrigem) {
         return distancia;
     }
 
+// bool BellFord(No **grafo,int inicio, int n, int *d, int *rot){
+// int n = 5;
+// int d[n], rot[n];
+// bool BMF = BellFord(grafo,0,n,d,rot);
+int* GrafoListaAdj::bellmanFord(string rotuloVOrigem){
+    for(int i=0;i<n;i++){
+        d[i] = 9999;
+        rot[i] = -1;
+    }
+    d[inicio] = 0;
+    rot[inicio] = inicio;
+    cout<<"Iniciou"<<endl;
+    bool troca = true;
+    while(troca){
+        troca=false;
+        for(int i=0;i<n;i++){
+            No *aux = grafo[i]->next;
+            while(aux!=grafo[i]){
+                int u = grafo[i]->chave;
+                int v = aux->chave;
+                if(d[v] > (d[u]+aux->peso)){
+                    troca = true;
+                    d[v] = d[u]+aux->peso;
+                    rot[v] = u;
+                }
+                aux=aux->next;
+            }
+        }
+    }
+    for(int i=0;i<n;i++){
+        No *aux = grafo[i]->next;
+        while(aux!=grafo[i]){
+            int u = grafo[i]->chave;
+            int v = aux->chave;
+            if(d[v]>(d[u]+aux->peso)){
+                return false;
+            }
+            aux=aux->next;
+
+        }
+    }
+    return true;
+}
+// #define INFINITY 9999
+// #define max 5
+// void dijkstra(int G[max][max],int n,int startnode) {
+// int G[max][max]={{0,1,0,3,10},{1,0,5,0,0},{0,5,0,2,1},{3,0,2,0,6},{10,0,1,6,0}};
+// int n=5;
+// int u=0;
+// dijkstra(G,n,u);
+int* GrafoListaAdj::dijkstra(string rotuloVOrigem){
+    int cost[max][max],distance[max],pred[max];
+   int visited[max],count,mindistance,nextnode,i,j;
+   for(i=0;i<n;i++){
+      for(j=0;j<n;j++){
+        if(G[i][j]==0)
+          cost[i][j]=INFINITY;
+        else
+          cost[i][j]=G[i][j];
+      }
+   }
+   for(i=0;i<n;i++) {
+      distance[i]=cost[startnode][i];
+      pred[i]=startnode;
+      visited[i]=0;
+   }
+   distance[startnode]=0;
+   visited[startnode]=1;
+   count=1;
+   while(count<n-1) {
+      mindistance=INFINITY;
+      for(i=0;i<n;i++){
+        if(distance[i]<mindistance&&!visited[i]) {
+            mindistance=distance[i];
+            nextnode=i;
+        }
+      }
+      visited[nextnode]=1;
+      for(i=0;i<n;i++)
+         if(!visited[i])
+      if(mindistance+cost[nextnode][i]<distance[i]) {
+         distance[i]=mindistance+cost[nextnode][i];
+         pred[i]=nextnode;
+      }
+      count++;
+   }
+   for(i=0;i<n;i++)
+   if(i!=startnode) {
+      cout<<"\nDistance of node"<<i<<"="<<distance[i];
+      cout<<"\nPath="<<i;
+      j=i;
+      do {
+         j=pred[j];
+         cout<<"<-"<<j;
+      }while(j!=startnode);
+   }
+}
+
 vector<string> GrafoListaAdj::getVertices() {
     return vertices;
 }

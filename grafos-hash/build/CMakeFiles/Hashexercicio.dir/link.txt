@@ -1,0 +1,2 @@
+/bin/ar qc libHashexercicio.a  CMakeFiles/Hashexercicio.dir/Hashexercicio.cpp.o
+/bin/ranlib libHashexercicio.a

@@ -32,3 +32,5 @@
 *.app
 
 grafos-DFS-BFS-trabalho/googletest
+grafos-BellmanFord-Dijkstra/googletest
+grafos-hash/googletest

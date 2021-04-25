@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-g++-9  -g   CMakeFiles/testTabelaHash.dir/testTabelaHash.cpp.o  -o testTabelaHash  ../lib/libgtest_maind.a ../libHashexercicio.a ../lib/libgtestd.a -lpthread 

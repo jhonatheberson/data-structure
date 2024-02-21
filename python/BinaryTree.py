@@ -89,6 +89,18 @@ def pos_ordem(root):
     # Visita nodo corrente.
     print(root.info),
 
+#complexy is O(n), where n is height the tree
+def levelOrder(root):
+    if not root:
+        return
+    queue = [root]
+    while queue: #O(n)
+        cur = queue.pop(0) #O(1)
+        print(cur.info, end=" ")
+        if cur.left:
+            queue.append(cur.left)
+        if cur.right:
+            queue.append(cur.right)
 
 def insere(root, Node):
     """Insere um Node em uma árvore binária de pesquisa."""

@@ -35,3 +35,5 @@ grafos-DFS-BFS-trabalho/googletest
 grafos-BellmanFord-Dijkstra/googletest
 tabela-hash/googletest
 tabela-hash/build
+
+*.Identifier

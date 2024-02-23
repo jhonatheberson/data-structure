@@ -1,3 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-HostUrl=https://hr-testcases-us-east-1.s3.amazonaws.com/15825/input04.txt?response-content-type=text%2Fplain&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAR6O7GJNX5DNFO3PV%2F20240223%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240223T031408Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=ba58fe7c2db54a5c80a1b44adc5330436dc8b0f1af46c17874968a4bdcb3bd7b
